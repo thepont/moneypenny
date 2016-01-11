@@ -1,7 +1,7 @@
 {
-  "name": "authentication-server",
-  "version": "0.0.1",
-  "description": "Authentication Server for TRC",
+  "name": "moneypenny",
+  "version": "0.1.0",
+  "description": "Authentication Server",
   "main": "app.js",
   "dependencies": {
     "babel": "^5.8.23",
@@ -63,5 +63,7 @@
   "scripts": {
     "test": "grunt test"
   },
-  "author": "Blueflag"
+  "author": [
+      "Paul Esson"
+  ]
 }
