@@ -1,12 +1,12 @@
-var PasswordCrypto = require('moneypenny-server/util/PasswordCrypto');
-var logger = require('moneypenny-server/util/logger');
+var PasswordCrypto = require('../../../util/PasswordCrypto');
+var logger = require('../../../util/logger');
 
 const ERROR_CLIENT_CHECK_SECRET = 'Checking client secret failed';
 
 
 module.exports = function(storageProvider){
 	var clientStore = storageProvider.clientStore;
-	
+
 	return{
 		getId: function(client){
 			return client.id;
