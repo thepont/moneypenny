@@ -12,6 +12,18 @@
   "engines": {
     "node": ">= 4.0.0"
   },
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/blueflag/moneypenny.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/blueflag/moneypenny/issues"
+  },
+  "homepage": "https://github.com/blueflag/moneypenny#readme",
   "dependencies": {
     "babel": "^5.8.23",
     "bcrypt": "^0.8.5",
@@ -24,7 +36,7 @@
     "moneypenny-mongo-storage": "file:./app/moneypenny-mongo-storage",
     "moneypenny-server": "file:./app/moneypenny-server",
     "mongodb": "^2.0.48",
-    "oauth20-provider": "git://github.com/t1msh/node-oauth20-provider",
+    "oauth20-provider": "git://github.com/t1msh/node-oauth20-provider.git",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",
     "passport-localapikey": "0.0.3",
