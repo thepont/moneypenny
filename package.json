@@ -63,5 +63,6 @@
   "scripts": {
     "test": "grunt test"
   },
-  "author": "Blueflag"
+  "author": "Blueflag",
+  "engine": "node 4"
 }
