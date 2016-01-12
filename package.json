@@ -1,13 +1,13 @@
 {
   "name": "moneypenny",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Authentication Server",
   "main": "app.js",
   "scripts": {
     "test": "grunt test"
   },
   "author": [
-      "Paul Esson"
+    "Paul Esson"
   ],
   "engines": {
     "node": ">= 4.0.0"
