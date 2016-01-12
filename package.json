@@ -33,8 +33,6 @@
     "express-session": "^1.11.3",
     "filestore": "^0.1.3",
     "jsonwebtoken": "^5.4.0",
-    "moneypenny-mongo-storage": "file:./app/moneypenny-mongo-storage",
-    "moneypenny-server": "file:./app/moneypenny-server",
     "mongodb": "^2.0.48",
     "oauth20-provider": "git://github.com/t1msh/node-oauth20-provider.git",
     "passport": "^0.3.0",
