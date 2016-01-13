@@ -1,8 +1,8 @@
 var jwt = require('jsonwebtoken');
-var logger = require('../../../util/logger');
+var logger = require('moneypenny-server/util/logger');
 
 module.exports = function(storageProvider, secret){
-    var codeStore = storageProvider.codeStore;
+    var codeStore = storageProvider.codeStore; 
     return {
         getUserId: function(code){
             return code.userId;
@@ -62,3 +62,4 @@ module.exports = function(storageProvider, secret){
         }
     }
 }
+

@@ -20,9 +20,9 @@ const DEFAULT_REDIRECT = '/';
 
 /**
 * Middlewere for checking that people using the service are authenticated.
-*
+* 
 * Adds req.sesson.returnTo, the url to redirect the user to after login.
-*
+* 
 * @param {request} req express request to check authenticated
 * @param {response} res express response related to this request
 * @param {function()} next callback to next middleware to handle request.
@@ -45,34 +45,34 @@ var ensureAuthenticated = (options) => (req, res, next) => {
  */
 
 module.exports = (options) => {
-	var oAuth2Server = require('./auth/oauth-server/oAuth2Server')(options);
+	var oAuth2Server = require('moneypenny-server/auth/oauth-server/oAuth2Server')(options);
 	var logger = require('./util/logger');
 	var redirectUrl = options.redirectUrl || DEFAULT_REDIRECT;
-
+	
 	return {
-
+		
 		/**
 		 * Initalize moneypenny.
 		 * adds oauth authentication endpoints to express app
 		 * @param expressapp app the express app that this will run on.
 		 */
-
+		
 		initialize: (app) => {
 			app.use(oAuth2Server.inject());
 			app.use(TOKEN_ENDPOINT, oAuth2Server.controller.token);
 			app.use(ensureAuthenticated(options));
 			app.use(AUTHORIZATION_ENDPOINT, oAuth2Server.controller.authorization);
 		},
-
+		
 		/**
 		 * Used for passport to serialize the session user.
 		 * using this method will allow the oauth server to send whatever details are in the user object serialized.
-		 *
+		 * 
 		 * @see http://passportjs.org/docs/configure#sessions
-		 *
+		 * 
 		 * @example
 		 * passport.serializeUser(authServer.serializeUser);
-		 *
+		 * 
 		 * @example
 		 * passport.serializeUser((user, done)=>{
 		 *		//remove password from user.
@@ -80,7 +80,7 @@ module.exports = (options) => {
 		 *  	return authServer.serializeUser(user, done);
 		 * })
 		 */
-
+		
 		serializeUser: (user, done) =>{
 			options.storageProvider.userStore.save(user).then(user => {
 				done(null, user._id);
@@ -89,14 +89,14 @@ module.exports = (options) => {
 				done(err, null);
 			});
 		},
-
+		
 		/**
 		 * Used for passport to deserialize the session user.
-		 *
+		 * 
 		 * @example
 		 * passport.deserializeUser(authServer.deserializeUser);
 		 */
-
+		
 		deserializeUser: (id, done) => {
 			options.storageProvider.userStore.fetchById(id).then(user => {
 				if(user)
@@ -112,36 +112,36 @@ module.exports = (options) => {
 				logger.error(err, id);
 				done(err, null);
 			});
-
+			
 		},
-
+		
 		/**
 		 * Middlewere for checking that people using the service are authenticated.
-		 *
+		 * 
 		 * Adds req.sesson.returnTo, the url to redirect the user to after login.
-		 *
+		 * 
 		 * @param {request} req express request to check authenticated
 		 * @param {response} res express response related to this request
 		 * @param {function} next callback to next middleware to handle request.
 		 */
-
+		
 		ensureAuthenticated: ensureAuthenticated(options),
-
+		 
 		/**
 		 * Helper method for login, this method can be used once a login is established from a passport strategy
-		 *
+		 * 
 		 * It will redirect the users back to the approprate location
-		 *
+		 * 
 		 * @param {request} req express request to check authenticated
 		 * @param {response} res express response related to this request
 		 * @param {function} next callback to next middleware to handle request.
 		 */
-
+		
 		loginAndRedirect: (req,res,next) => {
             if( req.session && req.session.returnTo ){
                 return res.redirect(req.session.returnTo);
             }
-            return res.redirect(redirectUrl);
-        }
+            return res.redirect(redirectUrl);         
+        } 
 	};
 };
